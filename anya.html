@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #ff69b4; /* Pink background */
+            color: #fff; /* White text */
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevent scrollbars */
+            position: relative; /* For absolute positioning of hearts */
+        }
+        h1 {
+            color: #fff; /* White heading */
+            margin-top: 20px; /* Space between image and text */
+            z-index: 1; /* Ensure the text is above the hearts */
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #fff; /* White button background */
+            color: #000; /* Black button text */
+            border: 1px solid #fff; /* White border */
+            transition: background-color 0.3s, color 0.3s; /* Transition for hover effect */
+            z-index: 1; /* Ensure buttons are above the hearts */
+        }
+        button:hover {
+            background-color: #000; /* Black background on hover */
+            color: #fff; /* White text on hover */
+        }
+        #yourFace {
+            position: relative;
+            width: 200px; /* Increase size as needed */
+            height: auto;
+            border-radius: 50%; /* Optional: makes the image circular */
+            z-index: 1; /* Ensure the face image is above the hearts */
+        }
+        .heart {
+            position: absolute;
+            width: 30px; /* Adjust size as needed */
+            height: auto;
+            animation: float 5s infinite; /* Animation for floating effect */
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <img id="yourFace" src="https://i.postimg.cc/x182QpMm/Whats-App-Image-2025-02-06-at-9-24-33-PM-removebg-preview.png" alt="Your Face">
+    <h1>Will you be my Valentine?</h1>
+    
+    <button id="yesButton" onclick="alert('Yay! I\'m glad you said yes!')">Yes</button>
+    <button id="noButton" onmouseover="moveButton()">No</button>
+
+    <script>
+        function moveButton() {
+            const noButton = document.getElementById('noButton');
+            const randomX = Math.floor(Math.random() * (window.innerWidth - 100));
+            const randomY = Math.floor(Math.random() * (window.innerHeight - 100));
+            noButton.style.position = 'absolute';
+            noButton.style.left = randomX + 'px';
+            noButton.style.top = randomY + 'px';
+        }
+
+        // Array of heart image URLs
+        const heartImageUrls = [
+            'https://i.postimg.cc/15tmRzZ4/sparkling-heart-emoji-3d-red-and-yellow-vector-48127556-removebg-preview.png',
+            'https://i.postimg.cc/T35TmH16/05b09560409829b6aeb806dbc30f59b2-removebg-preview.png',
+            'https://i.postimg.cc/9M3cXPYB/c5715a1771fc74dfa7ecc21784a4b079-removebg-preview.png'
+        ];
+
+        // Create multiple floating heart images
+        for (let i = 0; i < 20; i++) { // Adjust the number of hearts here
+            const heart = document.createElement('img');
+            // Randomly select a heart image from the array
+            heart.src = heartImageUrls[Math.floor(Math.random() * heartImageUrls.length)];
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+            heart.style.top = Math.random() * 100 + 'vh'; // Random vertical position
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's'; // Random animation duration
+            document.body.appendChild(heart);
+        }
+    </script>
+
+</body>
+</html>
